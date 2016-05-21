@@ -18,7 +18,7 @@ public class Eliminar extends HttpServlet {
             throws ServletException, IOException {
      
         
-       String rut = request.getParameter("txteliminar");
+        String rut = request.getParameter("txteliminar");
        String error="";
        
         if (rut.equals("") || rut == null) {
@@ -34,11 +34,11 @@ public class Eliminar extends HttpServlet {
             Usuario u = new Usuario(rut);
             Conexion cnn = new Conexion();
             
-            if (cnn.eliminar(u)>0) {
-                
-                cnn.desconectar();
-                request.getRequestDispatcher("EliminadoConexito.jsp").forward(request, response);
-            }
+                if (cnn.eliminar(u)>0) {
+
+                    cnn.desconectar();
+                    request.getRequestDispatcher("EliminadoConexito.jsp").forward(request, response);
+                }
             
             else{
              cnn.desconectar();

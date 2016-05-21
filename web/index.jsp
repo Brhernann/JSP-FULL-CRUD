@@ -9,13 +9,25 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>PROYECTx</title>
     </head>
+         <style type="text/css">
+        <!--
+        
+        body {
+            background:url(Imagenes/fondo.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        -->
+         </style></head> 
     <body>
         
         
         
-       <center> <h1>Bienvenido a ProyectX</h1>
+       <center> <h1>ProyectX</h1>
         
     <h3> <a href="registrar.jsp">Registrar Usuario</a></br>
          <a href="modificar.jsp">Modificar Registro</a></br>

@@ -4,6 +4,7 @@ package Servelet;
 import Clases.Conexion;
 import Clases.Usuario;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,15 +20,13 @@ public class Modificar extends HttpServlet {
         
         String nombre = request.getParameter("txtnombre");
         String apellido = request.getParameter("txtapellido");
-        String rut = request.getParameter("txtrut");
         String edad = request.getParameter("intedad");
         String error = "";
         
         
         if (nombre.equals("") || nombre == null ||
                 apellido. equals("") || apellido == null ||
-                rut.equals("") || rut == null ||
-                edad.equals("") || edad == null) {
+                 edad.equals("") || edad == null) {
         
             
             error="Complete los campos vacios!";
@@ -49,17 +48,23 @@ public class Modificar extends HttpServlet {
             request.getSession().setAttribute("myError", error);
             request.getRequestDispatcher("error.jsp").forward(request, response);
             }
-            
-         Usuario u = new Usuario(nombre, apellido, rut, edadParseada);
+          
+           
+           String rut = (String)request.getSession().getAttribute("mrut");
+           Usuario u = new Usuario(nombre, apellido, edadParseada);
+           u.setRut(rut);
+     
+          Conexion cnn = new Conexion();
          
-         Conexion cnn = new Conexion();
-         
-            cnn.Modificar(u);
-            cnn.desconectar();
-            request.getRequestDispatcher("ModificadoConexito.jsp").forward(request, response);
-         
+          cnn.Modificar(u);
+          cnn.desconectar();   
+          request.getRequestDispatcher("ModificadoConexito.jsp").forward(request, response);
+       
+          
+            }
+     
  
-        }
+        
         
         }
     

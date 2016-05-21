@@ -55,7 +55,7 @@ public class Registrar extends HttpServlet {
          
          Conexion cnn = new Conexion();
          
-            if (cnn.Verificador(rut)>0) {
+            if (cnn.Verificador(u)>0) {
             
             cnn.desconectar();
              error="El RUT ya esta registrado!";

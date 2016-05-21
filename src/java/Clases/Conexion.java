@@ -15,7 +15,8 @@ public class Conexion {
   
     private Connection cnn;
     private Statement state;
-    private ResultSet res; 
+    private ResultSet res;
+    
     
     //________________________________________________
     
@@ -31,12 +32,12 @@ public class Conexion {
     
     //___________________________________________
     
-        public int Verificador(String rut){
+        public int Verificador(Usuario u){
         
      int caca = 0;  
      
      try { 
-     String query="select * from usuarios where rut='"+rut+"'";
+     String query="select * from usuarios where rut='"+u.getRut()+"'";
      state = cnn.createStatement();
      res = state.executeQuery(query);
      
@@ -108,7 +109,7 @@ public class Conexion {
           int saber = 0;
   
         try {
-            String query =  "update usuarios set nombre='"+u.getNombre()+"', apellido= '"+u.getApellido()+"', rut='"+u.getRut()+"',edad="+u.getEdad()+"";
+            String query =  "update usuarios set nombre='"+u.getNombre()+"', apellido= '"+u.getApellido()+"', edad="+u.getEdad()+" where rut='"+u.getRut()+"'";
             state = cnn.createStatement();
              saber = state.executeUpdate(query);
         } catch (SQLException ex) {
@@ -117,7 +118,8 @@ public class Conexion {
          
         return saber;
     }
-   //________________________________________    
+
+      //________________________________________    
     
     public ArrayList<Usuario> Mostrar(){
         
@@ -128,12 +130,18 @@ public class Conexion {
             state = cnn.createStatement();
             res = state.executeQuery(query);
             
+         
+    
             while (res.next()) {                
                 
                 listaU.add(new Usuario(res.getString("nombre"), res.getString("apellido"), res.getString("rut"), res.getInt("edad")));
+                
+             
             }
             
             return listaU;
+                    
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);

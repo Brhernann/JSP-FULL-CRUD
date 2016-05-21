@@ -11,8 +11,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+             <style type="text/css">
+        <!--
+        
+        body {
+            background:url(Imagenes/fondo.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        -->
+         </style></head>
     <body>
-        <h1>Modificado con exito!</h1>
+      <center>  <h1>Modificado con exito!</h1>
         <a href="index.jsp">Home</a>
-    </body>
+      </center>  </body>
 </html>

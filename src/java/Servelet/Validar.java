@@ -5,6 +5,7 @@ import Clases.Conexion;
 import Clases.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ public class Validar extends HttpServlet {
        String rut = request.getParameter("txtmod");
        String error="";
        
+       
         if (rut.equals("") || rut == null) {
             
             error="Los campos estan vacios";
@@ -30,12 +32,13 @@ public class Validar extends HttpServlet {
         
         else{
 
-          Usuario u = new Usuario();
+          Usuario u = new Usuario(rut);
           Conexion cnn = new Conexion();
-   
-         if (cnn.Verificador(rut)>0) {
+  
+         if (cnn.Verificador(u)>0) {
             
             cnn.desconectar();
+            request.getSession().setAttribute("mrut", rut);
             request.getRequestDispatcher("modificando.jsp").forward(request, response);    
             }
             

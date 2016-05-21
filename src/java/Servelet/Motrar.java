@@ -18,14 +18,27 @@ public class Motrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
       
+        
+        String error = "";
         Usuario u = new Usuario();
         Conexion cnn = new Conexion();
    
-        ArrayList<Usuario> listaU = cnn.Mostrar();
+        ArrayList<Usuario> lista = cnn.Mostrar();
         
-        
-        request.getSession().setAttribute("Usuarios", listaU);
+        if (lista.size()==0) {
+            
+            error="no hay datos en la base de datos!";
+            
+            request.getSession().setAttribute("myError", error);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+        else{
+            
+        request.getSession().setAttribute("Usuarios", lista);
         request.getRequestDispatcher("MostradoConexito.jsp").forward(request, response);
+        }
+        
+    
         
         
     }
